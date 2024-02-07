@@ -30,6 +30,6 @@ def create_db_collections(uri, db_name):
 
 # Example usage
 if __name__ == "__main__":
-    URI = "your_mongodb_uri_here"
-    DB_NAME = "your_database_name_here"
+    URI = "mongodb+srv://Arcaser:Gb4Y1PWqhXnwY2jh@hexthreads.mw1ibnw.mongodb.net/?retryWrites=true&w=majority"
+    DB_NAME = "hexThreads"
     create_db_collections(URI, DB_NAME)

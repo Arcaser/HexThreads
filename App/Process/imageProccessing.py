@@ -28,13 +28,3 @@ class ImageProcessing:
         except Exception as e:
             print(f"Error decoding image: {e}")
             return None
-
-# Example usage
-image_processor = ImageProcessing()
-image_path = "test.jpg"
-image_string = image_processor.image2string(image_path)
-if image_string is not None:
-    print("Base64 String:", image_string)
-    image = image_processor.string2image(image_string)
-    if image is not None:
-        image.show()
