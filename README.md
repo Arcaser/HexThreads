@@ -39,10 +39,4 @@ List any prerequisites that users need to install before using your project. (ad
 - Prerequisite 2
 - ...
 
-### Installation
 
-Step-by-step instructions on how to install your project. (add later)
-
-```bash
-# Example installation command
-npm install HexThreadsApp
