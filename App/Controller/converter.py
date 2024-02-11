@@ -2,7 +2,7 @@ from PIL import Image
 from io import BytesIO
 import base64
 
-class ImageProcessing:
+class converter:
     def __init__(self):
         pass
 
