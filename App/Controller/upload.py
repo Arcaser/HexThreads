@@ -1,7 +1,7 @@
 import os
 from werkzeug.utils import secure_filename
-from App.Controller.MongoLoader import loader
-from App.Controller.converter import converter
+from Controller.MongoLoader import loader
+from Controller.converter import converter
 
 
 class Upload:
@@ -28,7 +28,7 @@ class Upload:
 
             # Process the image and load into MongoDB
             try:
-                self.loader.insert_cloth_nonStore(self.loader.generate_unique_id(), file)
+                self.loader.insert_cloth_nonStore(save_path)
                 return True
             except Exception as e:
                 print(f"An error occurred: {e}")

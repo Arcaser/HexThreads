@@ -1,6 +1,6 @@
 from pymongo import MongoClient
 from colorthief import ColorThief
-from App.Controller.converter import converter
+from converter import converter
 
 class loader:
 
@@ -36,7 +36,8 @@ class loader:
             self.insert_cloth(i,store_name, cloth)
     
     #inserts a clothing item that is not tied to a store in the database. used when the users are uploading their own clothing items
-    def insert_cloth_nonStore(self, id, image):
+    def insert_cloth_nonStore(self,image):
+        id = self.generate_unique_id()
         dominant_color,palette,image2string = self.ProcessImage(image)
         self.db.clothes.insert_one(
             {"_id": id,
@@ -50,7 +51,7 @@ class loader:
     def ProcessImage(self,image):
         print(image)
         image2string = self.name.image2string(image)
-
+        
         color_thief = ColorThief(image)
 
         # get the dominant color
@@ -63,4 +64,6 @@ class loader:
 
     #creates a unique numerical id for the clothing items. Current adds 1 to the current count of clothing items in the database
     def generate_unique_id(self):
-        return self.db.clothes.count_documents({}) + 1
+        id = self.db.clothes.count_documents({}) + 1
+        print(id)
+        return id

@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for
-from App.Controller.MongoLoader import loader  
-from App.Controller.MongoReader import reader
-from App.Controller.upload import Upload
+from Controller.MongoLoader import loader  
+from Controller.MongoReader import reader
+from Controller.upload import Upload
 
 
 app = Flask(__name__)
