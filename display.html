@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Image Color Palette Generator</title>
+<style>
+  #imagePreview {
+    max-width: 300px;
+    max-height: 300px;
+    margin-bottom: 20px;
+  }
+  .color-box {
+    width: 50px;
+    height: 50px;
+    margin: 5px;
+    display: inline-block;
+    border: 1px solid black;
+  }
+</style>
+</head>
+<body>
+
+<input type="file" id="imageInput" accept="image/*">
+<div id="imagePreview"></div>
+<div id="colorPalette"></div>
+
+<script>
+document.getElementById('imageInput').addEventListener('change', handleImageUpload);
+
+function handleImageUpload(event) {
+  const file = event.target.files[0];
+  const reader = new FileReader();
+
+  reader.onload = function(event) {
+    const img = new Image();
+    img.onload = function() {
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      canvas.width = img.width;
+      canvas.height = img.height;
+      ctx.drawImage(img, 0, 0, img.width, img.height);
+
+      const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      const colors = getColorsFromImageData(imageData, 5); // Change 5 to desired palette size
+      displayColors(colors);
+    };
+    img.src = event.target.result;
+  };
+
+  reader.readAsDataURL(file);
+}
+
+function getColorsFromImageData(imageData, paletteSize) {
+  const colorCount = {}; // Count occurrences of each color
+  const pixels = imageData.data;
+
+  // Iterate through pixels (each pixel has RGBA values)
+  for (let i = 0; i < pixels.length; i += 4) {
+    const r = pixels[i];
+    const g = pixels[i + 1];
+    const b = pixels[i + 2];
+    const color = `rgb(${r},${g},${b})`;
+    colorCount[color] = (colorCount[color] || 0) + 1;
+  }
+
+  // Sort colors by frequency
+  const sortedColors = Object.keys(colorCount).sort((a, b) => colorCount[b] - colorCount[a]);
+
+  // Take the top colors based on paletteSize
+  return sortedColors.slice(0, paletteSize);
+}
+
+function displayColors(colors) {
+  const colorPalette = document.getElementById('colorPalette');
+  colorPalette.innerHTML = '';
+
+  colors.forEach(color => {
+    const colorBox = document.createElement('div');
+    colorBox.classList.add('color-box');
+    colorBox.style.backgroundColor = color;
+    colorPalette.appendChild(colorBox);
+  });
+}
+</script>
+
+</body>
+</html>
