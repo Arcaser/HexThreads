@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+            crossorigin="anonymous"
+        />
+        <link rel="stylesheet" 
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="ColorPick.css">
+        <title>HexHome</title>
+    </head>
+    <body>
+        <div class="topnav">
+            <a href="#home" class="active">Logo</a>
+            <!-- Navigation links (hidden by default) -->
+            <div id="myLinks">
+              <a href="C:\Users\User\OneDrive\Documents\HexThread\HexThreads\client\Landing\Landing.html">Home</a>
+              <a href="C:\Users\User\OneDrive\Documents\HexThread\HexThreads\client\ImageDrop\ImageDrop.html">Shop by Picture</a>
+              <a href="C:\Users\User\OneDrive\Documents\HexThread\HexThreads\Client\ColorPick\ColorPick.html">Shop by Color</a>
+              <a href="#about">About</a>
+            </div>
+            <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
+            <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+              <i class="fa fa-bars"></i>
+            </a>
+          </div>
+        <div id="container class " class = "bg-dark text-light align-items-center">
+          <div>
+            
+          </div>
+          <h2 class="text-center">
+           Don't Know What Color You Need?
+          </h2>
+          <p class="text-center">
+            Use our color picker down below. <br>Just slide until you find the right color, or feel free to choose from our suggestions.
+          </p>
+          <div class = "d-flex justify-content-center">
+            <input type = "color" id = "colorPick" value = "#ff0000" >
+          </div>
+          <div class = "d-flex justify-content-center">
+            <button onclick="saveRGB()">Save Color Locally</button>
+          </div>
+        </div>
+    </div>
+    <script>
+    function saveRGB() {
+      // Get the selected color value
+      const colorSelector = document.getElementById('colorPick');
+      const selectedColor = colorSelector.value;
+
+      // Save the RGB code to localStorage
+      localStorage.setItem('selectedColor', selectedColor);
+
+      alert('RGB color saved locally!');
+  }
+
+  function myFunction() {
+        var x = document.getElementById("myLinks");
+        if (x.style.display === "block") {
+            x.style.display = "none";
+        } else {
+            x.style.display = "block";
+        }
+        }
+</script>
+
+    </body>
+</html>
