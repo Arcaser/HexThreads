@@ -2,7 +2,7 @@ from flask import Flask , url_for, request, redirect , jsonify
 from colorthief import ColorThief
 from io import BytesIO
 import base64
-import db
+from db import MongoDBConnector
 
 app = Flask(__name__)
 
@@ -14,11 +14,11 @@ db_name = "hexThreads"
 
 
 # Make a mongo main controller because this is starting to get messy
-db = db(db_uri, db_name)
+db2 = MongoDBConnector(db_uri, db_name)
 
-@app.route('/', methods=['GET'])
+@app.route('/')
 def home():
-    return url_for('index.html')
+    return redirect(url_for('static', filename='index.html'))
 
 @app.route('/upload', methods=['POST'])
 def upload_file():
@@ -33,21 +33,31 @@ def upload_file():
         # Ensure you're receiving the binary data in base64 format from the client
         image_binary = base64.b64decode(image_data)
         
-        db.add_clothes_store(store_name, image_binary)
+        db2.add_clothes_store(store_name, image_binary)
 
     return jsonify({"message": "Upload successful"}), 200
     
-#colorgrab route
-@app.route('/colorgrab/{store}/{rgb}', methods=['GET', 'POST'])
+#colorgrab route with store
+@app.route('/colorgrab/<store>/<rgb>', methods=['GET', 'POST'])
 def colorgrab(rgb,store):
     if request.method == 'GET':
         return "Please use POST method to send the RGB value"
     else:
         
-        results = db.get_colors(rgb, store)
+        results = db2.get_colors(rgb, store)
         return jsonify(results)
     
+#colorgrab no store 
+@app.route('/colorgrab/<rgb>', methods=['GET', 'POST'])
+def colorgrab_nostore(rgb):
+    if request.method == 'GET':
+        return "Please use POST method to send the RGB value"
+    else:
+        
+        results = db.get_colors(rgb, "NoStore")
+        return jsonify(results)
 
+# Run the app
 if __name__ == "__main__":
     app.run()
 

@@ -3,10 +3,7 @@ from colorthief import ColorThief
 from io import BytesIO
 import base64
 from datetime import datetime
-class db:
-    def __init__(self, uri, db_name):
-        self.client = MongoClient(uri)
-        self.db = self.client[db_name]
+
 
 
 class MongoDBConnector:

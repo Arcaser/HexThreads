@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>HexThreads</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    </head>
+    <body>
+        <h1>Welcome to My Flask App!</h1>
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            <label for="image">Image:</label><br>
+            <input type="file" id="image" name="image"><br><br>
+            <input type="submit" value="Submit">
+        </form>    
+</html>
