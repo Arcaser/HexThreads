@@ -14,10 +14,10 @@ class MongoDBConnector:
         self.client = MongoClient(uri)
         self.db = self.client[db_name]
 
+    #add clothes store takes binary
     def add_clothes_store(self, store_name, image_binary):
         # Use BytesIO to create a stream from the binary data
         image_stream = BytesIO(image_binary)
-        
         
         color_thief = ColorThief(image_stream)
         
@@ -39,10 +39,8 @@ class MongoDBConnector:
     def get_colors(self, rgb, store):
         # Construct the query based on whether a store name is provided
         if store == "NoStore":
-            # Query for any document with the palette containing the RGB value
             query = {"palette": {"$elemMatch": {"$eq": list(rgb)}}}
         else:
-            # Query for documents matching the store name AND the palette containing the RGB value
             query = {"store_name": store, "palette": {"$elemMatch": {"$eq": list(rgb)}}}
 
         # Execute the query
