@@ -1,0 +1,11 @@
+get color given image route. 
+
+get pallette with amount of colors. 
+
+get a specific stores images. 
+
+get a user. 
+
+/Return/{number} would return the color of a given image and then returns a list of pictures that match the color. 
+
+
