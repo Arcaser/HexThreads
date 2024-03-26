@@ -1,4 +1,4 @@
-from flask import Flask , url_for, request, redirect , jsonify
+from flask import Flask , url_for, request, redirect , jsonify, render_template
 from colorthief import ColorThief
 from io import BytesIO
 import base64
@@ -18,7 +18,7 @@ db2 = MongoDBConnector(db_uri, db_name)
 
 @app.route('/')
 def home():
-    return redirect(url_for('static', filename='index.html'))
+    return render_template('index.html')
 
 @app.route('/upload', methods=['POST'])
 def upload_file():
@@ -54,7 +54,7 @@ def colorgrab_nostore(rgb):
         return "Please use POST method to send the RGB value"
     else:
         
-        results = db.get_colors(rgb, "NoStore")
+        results = MongoDBConnector.get_colors(rgb, "NoStore")
         return jsonify(results)
 
 # Run the app
