@@ -2,13 +2,11 @@ import React, { Component } from "react";
 import Header from "../../components/header/Header";
 import '../image-upload/ImageUpload.module.css';
 
-class ImageUpload extends Component
+const ImageUpload = () =>
 {
-    render(){
-        return(
-            <Header/>
-        );
-    }
-}
+    return (
+        <Header/>
+    );
+};
 
 export default ImageUpload;

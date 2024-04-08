@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styles from '../header/Header.module.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Header = () =>
 {
@@ -28,7 +29,7 @@ const Header = () =>
                 <Link to="/about">About</Link>
             </div>
             <a href={void(0)} className={styles.icon} onClick={menuToggle}>
-                <i className="fa fa-bars"></i>
+                <FontAwesomeIcon icon={["far", "bars"]} size="6x" inverse/>
             </a>
         </div>
     );
