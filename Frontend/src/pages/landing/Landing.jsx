@@ -1,9 +1,9 @@
-import React, {Container, Component, Fragment} from "react";
+import React, {Fragment} from "react";
 import Header from "../../components/header/Header";
 import styles from '../landing/Landing.module.css';
-import headerPic from 'C:/Users/savag/Desktop/HexThreads/HexThreads/Frontend/src/assets/headerPic.jpg';
-import dragAndDrop from 'C:/Users/savag/Desktop/HexThreads/HexThreads/Frontend/src/assets/dragDrop.png';
-import colorPal from 'C:/Users/savag/Desktop/HexThreads/HexThreads/Frontend/src/assets/colorPal.jpg';
+import headerPic from '../../assets/headerPic.jpg';
+import dragAndDrop from '../../assets/dragDrop.png';
+import colorPal from '../../assets/colorPal.jpg';
 
 const Landing = () =>
 {
@@ -66,7 +66,7 @@ const Landing = () =>
                         <div class="container-md">
                             <div class="row align-items-center justify-content-between">
                                 <div class="col-sm">
-                                    <img src="C:\Users\User\OneDrive\Documents\HexThreads\client\images\colorPal.jpg" class="img-fluid" alt="" />
+                                    <img src={colorPal} class="img-fluid" alt="" />
                                 </div>
                                 <div class = "col p-5">
                                     <p class = "text-dark">
