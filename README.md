@@ -6,6 +6,7 @@ We are developing a web application designed to enhance user interaction with im
 ## Table of Contents
 - [Technologies](#technologies)
 - [Features](#features)
+- [The Team](#team)
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
@@ -14,15 +15,17 @@ We are developing a web application designed to enhance user interaction with im
 - [License](#license)
 - [Acknowledgments](#acknowledgments)
 
+  
+
 ## Technologies
 
 	~MongoDB
 	~Python
 	~JavaScript
+## The Team
+Harmony Iroha, Robert Hood, Ryan Campbell, Gregory Smith
 
 ## Features
-
-List the key features of your project.
 
 - Image Upload
 - Clothes recommendation
