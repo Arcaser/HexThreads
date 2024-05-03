@@ -80,13 +80,20 @@ def get_palette(size):
         return jsonify({'message': 'No file selected'}), 404
     if image and allowed_file(image.filename):
         ct = ColorThief(image)
-        palette = ct.get_palette(color_count=size)
-        for i in palette:
-            hex_code = '#{:02x}{:02x}{:02x}'.format(*i)
+        if size > 1:
+            palette = ct.get_palette(color_count=size)
+            for i in palette:
+                hex_code = '#{:02x}{:02x}{:02x}'.format(*i)
+                palettes.append(hex_code)
+                json_palettes = json.dumps(palettes)
+            #json_palettes = list(map(lambda x: json.dumps(x), palettes))
+            return json_palettes
+        else:
+            dominant_color = ct.get_color()
+            hex_code = '#{:02x}{:02x}{:02x}'.format(*dominant_color)
             palettes.append(hex_code)
-            json_palettes = json.dumps(palettes)
-        #json_palettes = list(map(lambda x: json.dumps(x), palettes))
-        return json_palettes
+            json_dominant_color = json.dumps(palettes)
+            return json_dominant_color
 
 # Run the app
 if __name__ == "__main__":

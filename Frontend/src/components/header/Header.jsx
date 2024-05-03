@@ -26,7 +26,6 @@ const Header = () =>
                 <Link to="/">Home</Link>
                 <Link to="/image-upload">Shop by Picture</Link>
                 <Link to="/color-picker">Shop by Color</Link>
-                <Link to="/about">About</Link>
             </div>
             <a href={void(0)} className={styles.icon} onClick={menuToggle}>
                 <FontAwesomeIcon icon={["far", "bars"]} size="6x" inverse/>
