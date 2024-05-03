@@ -10,7 +10,7 @@ const ImageUpload = () =>
     const [color, setColor] = useState('');
     const [palette, setPalette] = useState([]);
 
-    //let navigate = useNavigate();
+    let navigate = useNavigate();
 
     const handleCount = (e) => {
         setCount(e.target.value);
@@ -36,7 +36,7 @@ const ImageUpload = () =>
         }
     };
 
-    /* const handleColorSelection = (e) => {
+    const handleColorSelection = (e) => {
         e.preventDefault();
         const hexCode = e.target.style.backgroundColor;
 
@@ -44,7 +44,7 @@ const ImageUpload = () =>
 
         localStorage.setItem('selected-color', rgbToHex(hexCode));
         navigate(path);
-    }; */
+    };
 
     const getColor = async (e) => {
         e.preventDefault();
@@ -88,8 +88,8 @@ const ImageUpload = () =>
                     <div 
                         className={styles.colorArea} 
                         style={{backgroundColor: palette[i]}}
+                        onClick={handleColorSelection}
                     />
-                    {/*onClick={handleColorSelection}*/}
                 </li>
             );
         }

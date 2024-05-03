@@ -1,7 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styles from '../header/Header.module.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
+
+library.add(faBars);
 
 const Header = () =>
 {
@@ -28,7 +32,7 @@ const Header = () =>
                 <Link to="/color-picker">Shop by Color</Link>
             </div>
             <a href={void(0)} className={styles.icon} onClick={menuToggle}>
-                <FontAwesomeIcon icon={["far", "bars"]} size="6x" inverse/>
+                <FontAwesomeIcon icon="bars" size="1x" inverse/>
             </a>
         </div>
     );
