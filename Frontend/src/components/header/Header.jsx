@@ -32,7 +32,7 @@ const Header = () =>
                 <Link to="/color-picker">Shop by Color</Link>
             </div>
             <a href={void(0)} className={styles.icon} onClick={menuToggle}>
-                <FontAwesomeIcon icon="bars" size="1.5x" inverse/>
+                <FontAwesomeIcon icon="bars" size="1x" inverse/>
             </a>
         </div>
     );
