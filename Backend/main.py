@@ -28,32 +28,33 @@ def upload_many_files():
     for file in files:
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
-            original_path = os.path.join("Backend/uploads", filename)
-            modified_path = os.path.join("Backend/modified", filename.replace('.jpg', '.png'))  # Change file extension to PNG
+            original_dir = "Backend/uploads"
+            modified_dir = "Backend/modified"
 
-            # Save the original image
+            os.makedirs(original_dir, exist_ok=True)
+            os.makedirs(modified_dir, exist_ok=True)
+            
+            original_path = os.path.join(original_dir, filename)
+            modified_path = os.path.join(modified_dir, filename.replace('.jpg', '.png'))
+
             file.save(original_path)
 
-            # Open the image and remove the background
             input_image = Image.open(original_path)
             output_image = remove(input_image)
 
-            # Convert RGBA to RGB if saving as JPEG, or save as PNG to retain transparency
             if output_image.mode == 'RGBA':
-                # Save as PNG to retain transparency
                 output_image = output_image.convert('RGB')
-                modified_path = modified_path.replace('.jpg', '.png')  # Ensure the file extension is PNG
+                modified_path = modified_path.replace('.jpg', '.png')
 
             output_image.save(modified_path)
 
-            # Use ColorThief on the modified image to extract the color palette
             with open(modified_path, 'rb') as imageFile:
                 ct = ColorThief(imageFile)
                 palette = ct.get_palette(color_count=6)
 
+            os.remove(modified_path)
             palette_str = ','.join([f'#{color[0]:02x}{color[1]:02x}{color[2]:02x}' for color in palette])
 
-            # Create a new Clothe instance and save to database
             new_clothe = Clothe(filePath=original_path, palette=palette_str)
             db.session.add(new_clothe)
             db.session.commit()
