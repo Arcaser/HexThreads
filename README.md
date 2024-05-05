@@ -39,7 +39,7 @@ python main.py
 
 ## Overview of the Backend
 
-### Overview of App.py
+### Overview of Main.py
 - __Imports:__ The necessary modules and libraries are imported. These include Flask, Flask-CORS for enabling Cross-Origin Resource Sharing, ColorThief for extracting colors from images, base64 for decoding base64-encoded image data, and MongoDBConnector for interacting with a MongoDB database.
 - __Constants and Configuration:__ Constants like ALLOWED_EXTENSIONS (set of supported file extensions) and Flask configuration (MAX_CONTENT_LENGTH) are defined.
 - __Flask App Setup:__ An instance of the Flask app is created.
@@ -52,7 +52,7 @@ python main.py
 
 Overall, this Flask application provides a simple API for uploading images, extracting color information, and interacting with a MongoDB database to store and retrieve color data.
 
-### Overview of db.py
+### Overview of Models.py
 - __Imports:__ The class imports necessary modules such as pymongo for MongoDB interaction, ColorThief for extracting colors from images, BytesIO for working with binary data, and datetime for handling timestamps.
 - __Initialization:__ The class constructor __init__ takes the MongoDB URI and database name as parameters and initializes a connection to the MongoDB server and selects the specified database.
 - __Adding Clothes Store Data:__ The method add_clothes_store adds information about a clothes store to the database. It takes the store name and binary image data as parameters. It uses ColorThief to extract the dominant color and a palette of colors from the image. Then, it constructs a document containing the store name, image binary data, color palette, dominant color, and current date and time. Finally, it inserts this document into the 'clothes_stores' collection in the MongoDB database.
