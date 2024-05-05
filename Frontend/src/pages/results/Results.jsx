@@ -34,28 +34,25 @@ const Results = () =>
 
     const generateImageList = () => {
         const images = [];
-
-        for(let i = 0; i < clothes.length; i++)
-        {
-            
-            var path = `Backend/${clothes[i].filePath.replace(/\\/g, '/')}`; 
-            console.log(path);
+    
+        for (let i = 0; i < clothes.length; i++) {
+            var imgData = clothes[i].image_data;
             var altText = `Clothing item ${clothes[i].id}`;
-
+    
             images.push(
                 <li key={i} className="">
-                    <img 
-                        src={path}
+                    <img
+                        src={imgData}
                         alt={altText}
                         className=""
                     />
                 </li>
             );
         }
-
+    
         return images;
     };
-
+    
     return (
         <>
             <Header/>

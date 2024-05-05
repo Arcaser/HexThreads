@@ -1,6 +1,5 @@
 from config import db
 from math import sqrt
-import base64
 
 class Clothe(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -8,16 +7,12 @@ class Clothe(db.Model):
     palette = db.Column(db.String(255), nullable=False)
 
     def to_json(self):
-        data = {
+        return {
             'id': self.id,
             'palette': self.palette,
             'filePath': self.filePath
         }
-        return data
-    
-    def return_filepath(self):
-        return self.filePath
-    
+
     def hex_to_rgb(self, hex_code):
         """Convert hex color code to an RGB tuple."""
         hex_code = hex_code.lstrip('#')
@@ -34,4 +29,3 @@ class Clothe(db.Model):
             if self.color_distance(target_rgb, color_rgb) <= tolerance:
                 return True
         return False
-    

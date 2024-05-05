@@ -1,13 +1,12 @@
-import json
-from flask import request, jsonify, send_from_directory
+import base64
+from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 from werkzeug.utils import secure_filename
 from colorthief import ColorThief
-from config import db , ALLOWED_EXTENSIONS ,app
-from models import Clothe 
+from config import db, ALLOWED_EXTENSIONS, app
+from models import Clothe
 import os
 from PIL import Image
-
 
 # Utility function to check file extensions
 def allowed_file(filename):
@@ -56,7 +55,6 @@ def upload_many_files():
             results.append({'filename': file.filename, 'message': 'Invalid file type or empty filename'})
     return jsonify(results), 200
 
-
 @app.route('/palette/<int:size>', methods=['GET', 'POST'])
 def get_palette(size):
     palette = []
@@ -81,36 +79,46 @@ def get_palette(size):
             palette_to_json = json.dumps(palette)
             return palette_to_json
 
-
-@app.route('/match', methods=['GET','POST'])
+@app.route('/match', methods=['GET', 'POST'])
 def match_color():
-    data = request.get_json() 
-    hexcode = data['Hex']  # Extract the hex code from the JSON data
+    data = request.get_json()
+    hexcode = data.get('Hex')  # Extract the hex code from the JSON data
     if not hexcode:
-        return jsonify({"error": "No hex code provided"}), 400  
-    #hexcode = hexcode.strip().lower()
+        return jsonify({"error": "No hex code provided"}), 400
+
     clothes = Clothe.query.all()  # Query all clothing items
     matches = []
+
     # Find all clothes that match the given hex code
     for clothe in clothes:
         if clothe.match_color(hexcode):
-            matches.append(clothe.to_json())
+            clothe_info = clothe.to_json()
+            image_path = os.path.join('uploads', clothe.filePath)
+
+            # Read and encode the image in Base64
+            with open(image_path, 'rb') as img_file:
+                encoded_string = base64.b64encode(img_file.read()).decode('utf-8')
+            clothe_info["image_data"] = f"data:image/{get_file_extension(clothe.filePath)};base64,{encoded_string}"
+
+            matches.append(clothe_info)
+
     return jsonify(matches), 200  # Return the list of matches as JSON
 
 @app.route('/uploads/<path:filename>')
 def serve_uploads(filename):
-    # Assuming 'uploads' is in the same directory as 'main.py'
     return send_from_directory('uploads', filename)
 
 @app.route('/clotheexamples/<path:filename>')
 def serve_clotheexamples(filename):
-    # Assuming 'clotheexamples' is in the same directory as 'main.py'
     return send_from_directory('../clotheexamples', filename)
 
 @app.route('/static/<path:filename>')
 def serve_static(filename):
-    # For any other static files
     return send_from_directory('static', filename)
+
+def get_file_extension(filename):
+    """Get the file extension of an image file."""
+    return filename.split('.')[-1].lower()
 
 if __name__ == "__main__":
     with app.app_context():
