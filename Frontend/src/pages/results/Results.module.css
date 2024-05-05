@@ -2,18 +2,28 @@
 {
     display: flex;
     justify-content: center;
+    list-style-type: none;
     align-items: center;
 }
 
-ul
-{
-    padding: 20px;
-    list-style-type: none;
-    display: inline-flex;
-}
-
-ul li
+.resultItem
 {
     padding: 50px;
+    width: 400px;
     text-align: center;
+    cursor: pointer;
+}
+
+.resultImg
+{
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+    border: solid black 4px;
+    transition: ease 0.45s all;
+}
+
+.resultImg:hover
+{
+    box-shadow: 5px 5px 5px gray;
 }

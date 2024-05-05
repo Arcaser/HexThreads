@@ -1,4 +1,4 @@
-import React, {Fragment} from "react";
+import React from "react";
 import Header from "../../components/header/Header";
 import styles from '../landing/Landing.module.css';
 import headerPic from '../../assets/headerPic.jpg';
@@ -21,16 +21,22 @@ const Landing = () =>
                         integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
                         crossOrigin="anonymous"
                     />
-                    <link rel="stylesheet" 
-                    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+                    <link 
+                        rel="stylesheet" 
+                        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+                    />
                     <title>HexHome</title>
                 </head>
                 <body>
                     <section>
                         <div id="headerHome" className="p-5">
                             <div className="p-20 bg-light">
-                            <img id={styles.headImage} src = {headerPic} 
-                                height="500" width="630"/>
+                                <img 
+                                    id={styles.headImage} 
+                                    src={headerPic} 
+                                    height="500" 
+                                    width="630"
+                                />
                                 <div className="container bg-light">
                                     <h1 className={styles.header}>HexThreads</h1>
                                     <p className={styles.headerText}>
@@ -48,10 +54,13 @@ const Landing = () =>
                         <div className="container-md">
                             <div className="row align-items-center justify-content-between">
                                 <div className="col p-5">
-                                    <p className="text-light">
-                                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Obcaecati error corrupti itaque omnis possimus quidem molestias, placeat explicabo voluptatem fugit praesentium expedita laborum vero vitae maxime enim, ea culpa nobis?
+                                    <p className="text-light"> 
+                                        Discovering your perfect outfit is now easier than ever. 
+                                        Simply upload an image containing colors you adore, and our system will analyze the hues present to curate personalized clothing suggestions tailored to your unique palette. 
+                                        Whether you're drawn to vibrant blues, earthy greens, or fiery reds, our system ensures that every recommendation aligns with your color preferences, helping you effortlessly express your style with confidence. 
+                                        Try it now and let the magic of color transform your fashion journey!
                                     </p>
-                                    <a href="C:\Users\User\OneDrive\Documents\HexThread\HexThreads\client\HexHtml\HexFileDrop.html" className="btn btn-primary">Read More</a>
+                                    <a href="C:\Users\User\OneDrive\Documents\HexThread\HexThreads\client\HexHtml\HexFileDrop.html" className="btn btn-primary">Upload</a>
                                 </div>
                                 <div className="col-sm">
                                     <img src={dragAndDrop} className="img-fluid"/>
@@ -59,7 +68,7 @@ const Landing = () =>
                             </div>
                         </div>
                     </section>
-                    <div className="p-2 bg-light"></div>
+                    {/* <div className="p-2 bg-light"></div>
                     <section id="fileDrop" className="p-5 bg-light">
                     <h2 className="text-dark text-center">Shop By Color</h2>
                         <div className="container-md">
@@ -76,7 +85,7 @@ const Landing = () =>
                             
                             </div>
                         </div>
-                    </section>
+                    </section> */}
                 </body>
             </html>
         </>

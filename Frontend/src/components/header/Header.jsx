@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import styles from '../header/Header.module.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
