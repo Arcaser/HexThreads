@@ -40,23 +40,23 @@ python main.py
 ## Overview of the Backend
 
 ### Overview of App.py
-__Imports:__ The necessary modules and libraries are imported. These include Flask, Flask-CORS for enabling Cross-Origin Resource Sharing, ColorThief for extracting colors from images, base64 for decoding base64-encoded image data, and MongoDBConnector for interacting with a MongoDB database.
-__Constants and Configuration:__ Constants like ALLOWED_EXTENSIONS (set of supported file extensions) and Flask configuration (MAX_CONTENT_LENGTH) are defined.
-__Flask App Setup:__ An instance of the Flask app is created.
-__MongoDB Configuration:__ The MongoDB URI and database name are set. An instance of MongoDBConnector is created to interact with the MongoDB database.
-__File Upload Endpoint (/upload):__ This endpoint handles POST requests with JSON data containing image items. Each item includes the store name and binary data of the image. The binary data is decoded and stored in the MongoDB database using the add_clothes_store method of the MongoDBConnector instance.
-__Color Grab Endpoints (/colorgrab):__ There are two endpoints for grabbing colors. One endpoint (/colorgrab/<store>/<rgb>) handles requests with a specified store name, while the other (/colorgrab/<rgb>) handles requests without a store name. Both endpoints return color information from the database based on the RGB value provided.
-__Dominant Color Extraction Endpoint (/color):__ This endpoint handles both GET and POST requests. It extracts the dominant color from an uploaded image using the ColorThief library and returns it in JSON format.
-__Palette Extraction Endpoint (/palette/<int:size>):__ This endpoint also handles GET and POST requests. It extracts a color palette from an uploaded image using the ColorThief library, with the size of the palette specified by the size parameter. The extracted colors are returned as a JSON array.
-__App Execution:__ The Flask app is run if the script is executed directly.
+- __Imports:__ The necessary modules and libraries are imported. These include Flask, Flask-CORS for enabling Cross-Origin Resource Sharing, ColorThief for extracting colors from images, base64 for decoding base64-encoded image data, and MongoDBConnector for interacting with a MongoDB database.
+- __Constants and Configuration:__ Constants like ALLOWED_EXTENSIONS (set of supported file extensions) and Flask configuration (MAX_CONTENT_LENGTH) are defined.
+- __Flask App Setup:__ An instance of the Flask app is created.
+- __MongoDB Configuration:__ The MongoDB URI and database name are set. An instance of MongoDBConnector is created to interact with the MongoDB database.
+- __File Upload Endpoint (/upload):__ This endpoint handles POST requests with JSON data containing image items. Each item includes the store name and binary data of the image. The binary data is decoded and stored in the MongoDB database using the add_clothes_store method of the MongoDBConnector instance.
+- __Color Grab Endpoints (/colorgrab):__ There are two endpoints for grabbing colors. One endpoint (/colorgrab/<store>/<rgb>) handles requests with a specified store name, while the other (/colorgrab/<rgb>) handles requests without a store name. Both endpoints return color information from the database based on the RGB value provided.
+- __Dominant Color Extraction Endpoint (/color):__ This endpoint handles both GET and POST requests. It extracts the dominant color from an uploaded image using the ColorThief library and returns it in JSON format.
+- __Palette Extraction Endpoint (/palette/<int:size>):__ This endpoint also handles GET and POST requests. It extracts a color palette from an uploaded image using the ColorThief library, with the size of the palette specified by the size parameter. The extracted colors are returned as a JSON array.
+- __App Execution:__ The Flask app is run if the script is executed directly.
 
 Overall, this Flask application provides a simple API for uploading images, extracting color information, and interacting with a MongoDB database to store and retrieve color data.
 
 ### Overview of db.py
-__Imports:__ The class imports necessary modules such as pymongo for MongoDB interaction, ColorThief for extracting colors from images, BytesIO for working with binary data, and datetime for handling timestamps.
-__Initialization:__ The class constructor __init__ takes the MongoDB URI and database name as parameters and initializes a connection to the MongoDB server and selects the specified database.
-__Adding Clothes Store Data:__ The method add_clothes_store adds information about a clothes store to the database. It takes the store name and binary image data as parameters. It uses ColorThief to extract the dominant color and a palette of colors from the image. Then, it constructs a document containing the store name, image binary data, color palette, dominant color, and current date and time. Finally, it inserts this document into the 'clothes_stores' collection in the MongoDB database.
-__Getting Colors:__ The method get_colors retrieves documents from the database based on a given RGB value and optional store name. It constructs a query to find documents that match the RGB value in their color palette. If a store name is provided, it adds that condition to the query. It then executes the query and returns the matching documents.
+- __Imports:__ The class imports necessary modules such as pymongo for MongoDB interaction, ColorThief for extracting colors from images, BytesIO for working with binary data, and datetime for handling timestamps.
+- __Initialization:__ The class constructor __init__ takes the MongoDB URI and database name as parameters and initializes a connection to the MongoDB server and selects the specified database.
+- __Adding Clothes Store Data:__ The method add_clothes_store adds information about a clothes store to the database. It takes the store name and binary image data as parameters. It uses ColorThief to extract the dominant color and a palette of colors from the image. Then, it constructs a document containing the store name, image binary data, color palette, dominant color, and current date and time. Finally, it inserts this document into the 'clothes_stores' collection in the MongoDB database.
+- __Getting Colors:__ The method get_colors retrieves documents from the database based on a given RGB value and optional store name. It constructs a query to find documents that match the RGB value in their color palette. If a store name is provided, it adds that condition to the query. It then executes the query and returns the matching documents.
 
 Overall, this class provides a convenient interface for storing information about clothes stores along with their associated images and colors in a MongoDB database, and it also allows for querying and retrieving color information based on RGB values and store names.
 
