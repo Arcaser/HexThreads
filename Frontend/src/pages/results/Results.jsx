@@ -30,17 +30,18 @@ const Results = () =>
             console.log(data);
             setClothes(data);
         });
-    }
+    };
 
     const generateImageList = () => {
         const images = [];
     
-        for (let i = 0; i < clothes.length; i++) {
+        for (let i = 0; i < clothes.length; i++) 
+            {
             var imgData = clothes[i].image_data;
             var altText = `Clothing item ${clothes[i].id}`;
     
             images.push(
-                <li key={i} className="">
+                <li key={i} className={styles.resultItem}>
                     <img
                         src={imgData}
                         alt={altText}
@@ -48,7 +49,7 @@ const Results = () =>
                     />
                 </li>
             );
-        }
+        };
     
         return images;
     };
@@ -67,8 +68,10 @@ const Results = () =>
                         integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
                         crossOrigin="anonymous"
                     />
-                    <link rel="stylesheet" 
-                    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+                    <link 
+                        rel="stylesheet" 
+                        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+                    />
                     <title>HexHome</title>
                 </head>
                 <body>

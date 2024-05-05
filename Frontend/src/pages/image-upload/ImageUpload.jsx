@@ -38,10 +38,9 @@ const ImageUpload = () =>
     const handleColorSelection = (e) => {
         e.preventDefault();
         const hexCode = e.target.style.backgroundColor;
-
         let path = '/results';
-
         localStorage.setItem('selected-color', rgbToHex(hexCode));
+        
         navigate(path);
     };
 
@@ -93,53 +92,6 @@ const ImageUpload = () =>
             return colHex;
         }
     }
-    async function fetchMatchingClothes(hexCode) {
-        const url = 'http://127.0.0.1:5000/match';  // Endpoint for the POST request
-        const data = {
-            Hex: hexCode  // Prepare the JSON payload with the hex code
-        };
-    
-        try {
-            const response = await fetch(url, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)  // Convert the JavaScript object to a JSON string
-            });
-    
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-    
-            const matches = await response.json();  // Parse the JSON response
-            displayImages(matches);  // Call to display images
-        } catch (error) {
-            console.error('Error fetching matching clothes:', error);
-            displayImages([]);  // Ensure clear display if error occurs
-        }
-    }
-    
-    
-    function displayImages(imageData) {
-        const container = document.getElementById('imagesContainer');
-        container.innerHTML = '';  // Clear previous images
-    
-        imageData.forEach(image => {
-            const img = document.createElement('img');
-            img.src = image.filePath.replace(/\\/g, '/'); // Correct the file path
-            img.alt = `Clothing item ${image.id}`;
-            container.appendChild(img);
-        });
-    }
-    
-    function fetchAndDisplay(hexCode) {
-        fetchMatchingClothes(hexCode).then(matches => {
-            console.log('Matching clothes:', matches);
-        }).catch(error => {
-            console.error('Failed to fetch matches:', error);
-        });
-    }
 
     return (
         <>
@@ -155,18 +107,21 @@ const ImageUpload = () =>
                         integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
                         crossOrigin="anonymous"
                     />
-                    <link rel="stylesheet" 
-                    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+                    <link 
+                        rel="stylesheet" 
+                        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+                    />
                     <title>HexHome</title>
                 </head>
                 <body>
                     <div id="container" className="bg-dark text-light align-items-center">
                         <h2 className="text-center">Ready To Get Your Perfect Match?</h2>
                         <p className="text-center">
-                            All you have to do is drop your picture down below. That's it then we'll do the rest. 
+                            All you have to do is drop your picture down below and set the amount of colors you want to find. 
+                            That's it then we'll do the rest. 
                         </p>
                         <div className={styles.uploadElements}>
-                            <button className="p-2" onClick={handleClick}>Drop Picture Here</button>
+                            <button className="p-2" onClick={handleClick}>Upload</button>
                             <input 
                                 type="file" 
                                 id="fileInput" 
@@ -183,7 +138,6 @@ const ImageUpload = () =>
                                 max={6}
                                 value={count}
                             />
-
                         </div>
                         <div className= "container d-flex justify-content-center">
                             <div

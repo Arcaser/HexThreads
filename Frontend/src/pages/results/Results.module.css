@@ -2,21 +2,28 @@
 {
     display: flex;
     justify-content: center;
+    list-style-type: none;
     align-items: center;
 }
 
-.resultArea li
+.resultItem
 {
     padding: 50px;
-    width: 500px;
-    height: 500px;
+    width: 400px;
     text-align: center;
+    cursor: pointer;
 }
 
 .resultImg
 {
-    max-width: 100%;
+    width: 100%;
     height: auto;
-    border-radius: 10px;
-    border: solid black 3px;
+    border-radius: 20px;
+    border: solid black 4px;
+    transition: ease 0.45s all;
+}
+
+.resultImg:hover
+{
+    box-shadow: 5px 5px 5px gray;
 }
