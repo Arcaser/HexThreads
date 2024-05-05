@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import styles from '../header/Header.module.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -24,17 +24,18 @@ const Header = () =>
     }
 
     return (
-        <div className={styles.topnav}>
-            <Link to="/">Logo</Link>
-            <div id={styles.myLinks}>
-                <Link to="/">Home</Link>
-                <Link to="/image-upload">Shop by Picture</Link>
-                <Link to="/color-picker">Shop by Color</Link>
+        <>
+            <div className={styles.topnav}>
+                <Link to="/">HexThreads</Link>
+                <div id={styles.myLinks}>
+                    <Link to="/">Home</Link>
+                    <Link to="/image-upload">Shop by Picture</Link>
+                </div>
+                <a href={void(0)} className={styles.icon} onClick={menuToggle}>
+                    <FontAwesomeIcon icon="bars" size="1x" inverse/>
+                </a>
             </div>
-            <a href={void(0)} className={styles.icon} onClick={menuToggle}>
-                <FontAwesomeIcon icon="bars" size="1x" inverse/>
-            </a>
-        </div>
+        </>
     );
 };
 

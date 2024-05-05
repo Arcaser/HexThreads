@@ -29,7 +29,6 @@ class Clothe(db.Model):
     def match_color(self, target_hex, tolerance=5):
         target_rgb = self.hex_to_rgb(target_hex)
         palette_array = self.palette.split(",")
-
         for hex_code in palette_array:
             color_rgb = self.hex_to_rgb(hex_code)
             if self.color_distance(target_rgb, color_rgb) <= tolerance:

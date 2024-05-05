@@ -1,0 +1,19 @@
+.resultArea
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+ul
+{
+    padding: 20px;
+    list-style-type: none;
+    display: inline-flex;
+}
+
+ul li
+{
+    padding: 50px;
+    text-align: center;
+}

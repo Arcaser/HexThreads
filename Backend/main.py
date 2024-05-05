@@ -7,7 +7,6 @@ from config import db , ALLOWED_EXTENSIONS ,app
 from models import Clothe 
 import os
 from PIL import Image
-from rembg import remove
 
 
 # Utility function to check file extensions
@@ -23,51 +22,44 @@ def upload_many_files():
     files = request.files.getlist('file')
     if not files:
         return jsonify({"error": "No files part"}), 400
-
     results = []
     for file in files:
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
-            original_dir = "Backend/uploads"
-            modified_dir = "Backend/modified"
-
+            original_dir = "uploads"
+            modified_dir = "modified"
             os.makedirs(original_dir, exist_ok=True)
             os.makedirs(modified_dir, exist_ok=True)
-            
             original_path = os.path.join(original_dir, filename)
             modified_path = os.path.join(modified_dir, filename.replace('.jpg', '.png'))
-
             file.save(original_path)
-
             input_image = Image.open(original_path)
-            output_image = remove(input_image)
-
+            output_image = input_image
             if output_image.mode == 'RGBA':
                 output_image = output_image.convert('RGB')
                 modified_path = modified_path.replace('.jpg', '.png')
-
             output_image.save(modified_path)
-
             with open(modified_path, 'rb') as imageFile:
+                paletteList = []
                 ct = ColorThief(imageFile)
                 palette = ct.get_palette(color_count=6)
-
+                for color in palette:
+                    hex_code = '#{:02x}{:02x}{:02x}'.format(*color)
+                    paletteList.append(hex_code)
+                palette_str = ','.join(paletteList)
             os.remove(modified_path)
-            palette_str = ','.join([f'#{color[0]:02x}{color[1]:02x}{color[2]:02x}' for color in palette])
-
             new_clothe = Clothe(filePath=original_path, palette=palette_str)
             db.session.add(new_clothe)
             db.session.commit()
-
             results.append({'id': new_clothe.id, 'message': 'Upload successful', 'filePath': original_path})
         else:
             results.append({'filename': file.filename, 'message': 'Invalid file type or empty filename'})
-
     return jsonify(results), 200
 
 
-@app.route('/color', methods=['GET', 'POST'])
-def get_dominant_color():
+@app.route('/palette/<int:size>', methods=['GET', 'POST'])
+def get_palette(size):
+    palette = []
     if 'file' not in request.files:
         return jsonify({'message': 'No file part included'}), 400
     image = request.files['file']
@@ -75,29 +67,34 @@ def get_dominant_color():
         return jsonify({'message': 'No file selected'}), 404
     if image and allowed_file(image.filename):
         ct = ColorThief(image)
-        color = ct.get_color()
-        hex_code = '#{:02x}{:02x}{:02x}'.format(*color)
-        hex_to_json = json.dumps(hex_code)
-        return hex_to_json
+        if size <= 1:
+            color = ct.get_color()
+            hex_code = '#{:02x}{:02x}{:02x}'.format(*color)
+            palette.append(hex_code)
+            palette_to_json = json.dumps(palette)
+            return palette_to_json
+        else:
+            ct_palettes = ct.get_palette(color_count=size)
+            for i in ct_palettes:
+                hex_code = '#{:02x}{:02x}{:02x}'.format(*i)
+                palette.append(hex_code)
+            palette_to_json = json.dumps(palette)
+            return palette_to_json
 
-@app.route('/match', methods=['POST'])
+
+@app.route('/match', methods=['GET','POST'])
 def match_color():
     data = request.get_json() 
-
-    hexcode = data.get('Hex')  # Extract the hex code from the JSON data
+    hexcode = data['Hex']  # Extract the hex code from the JSON data
     if not hexcode:
         return jsonify({"error": "No hex code provided"}), 400  
-
-    hexcode = hexcode.strip().lower() 
-
+    #hexcode = hexcode.strip().lower()
     clothes = Clothe.query.all()  # Query all clothing items
     matches = []
-
     # Find all clothes that match the given hex code
     for clothe in clothes:
         if clothe.match_color(hexcode):
             matches.append(clothe.to_json())
-
     return jsonify(matches), 200  # Return the list of matches as JSON
 
 
