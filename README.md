@@ -62,7 +62,6 @@ Overall, this class provides a convenient interface for storing information abou
 
 ## Overview of Frontend
 
-### Overview of the Components
 ### Header Overview
 
 #### Header.module.css
