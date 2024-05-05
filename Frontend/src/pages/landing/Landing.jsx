@@ -31,7 +31,7 @@ const Landing = () =>
                             <div className="p-20 bg-light">
                             <img id={styles.headImage} src = {headerPic} 
                                 height="500" width="630"/>
-                                <div class="container bg-light">
+                                <div className="container bg-light">
                                     <h1 className={styles.header}>HexThreads</h1>
                                     <p className={styles.headerText}>
                                         HexThreads is designed to discover your ideal match for your requirements. 
