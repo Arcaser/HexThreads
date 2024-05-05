@@ -1,5 +1,5 @@
 import json
-from flask import request, jsonify
+from flask import request, jsonify, send_from_directory
 from flask_cors import CORS
 from werkzeug.utils import secure_filename
 from colorthief import ColorThief
@@ -97,6 +97,20 @@ def match_color():
             matches.append(clothe.to_json())
     return jsonify(matches), 200  # Return the list of matches as JSON
 
+@app.route('/uploads/<path:filename>')
+def serve_uploads(filename):
+    # Assuming 'uploads' is in the same directory as 'main.py'
+    return send_from_directory('uploads', filename)
+
+@app.route('/clotheexamples/<path:filename>')
+def serve_clotheexamples(filename):
+    # Assuming 'clotheexamples' is in the same directory as 'main.py'
+    return send_from_directory('../clotheexamples', filename)
+
+@app.route('/static/<path:filename>')
+def serve_static(filename):
+    # For any other static files
+    return send_from_directory('static', filename)
 
 if __name__ == "__main__":
     with app.app_context():
