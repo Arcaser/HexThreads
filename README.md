@@ -3,18 +3,15 @@ Matching Clothes to Hexcodes
 ## Description
 We are developing a web application designed to enhance user interaction with images. The primary functionality involves capturing an image of an item, conducting color analysis to identify the corresponding hex code, and presenting users with a curated selection from a comprehensive database of available.
 
-## Table of Contents
-- [Technologies](#technologies)
-- [Features](#features)
-- [The Team](#team)
-- [Overview of the Backend](#Backend)
-- [Overview of the Frontend](#Frontend)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
-- [Acknowledgments](#acknowledgments)
+# Table of Contents
 
-  
+1. [Technologies](#technologies)
+2. [The Team](#the-team)
+3. [Features](#features)
+4. [Instructions for Running the Project](#instructions-for-running-the-project)
+5. [Overview of the Backend](#overview-of-the-backend)
+6. [Overview of the Frontend](#overview-of-the-frontend)
+
 
 ## Technologies
 
@@ -28,6 +25,17 @@ Harmony Iroha, Robert Hood, Ryan Campbell, Gregory Smith
 
 - Image Upload
 - Clothes recommendation
+
+## Instructions for running the project
+### Frontend
+```
+npm run dev
+```
+
+### Backend
+```
+python main.py
+```
 
 ## Overview of the Backend
 
@@ -52,7 +60,7 @@ __Getting Colors:__ The method get_colors retrieves documents from the database 
 
 Overall, this class provides a convenient interface for storing information about clothes stores along with their associated images and colors in a MongoDB database, and it also allows for querying and retrieving color information based on RGB values and store names.
 
-# Overview of Frontend
+## Overview of Frontend
 
 ## Overview of the Components
 ### Header Overview
