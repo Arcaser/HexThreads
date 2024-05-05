@@ -188,7 +188,7 @@ Serves as the landing page for the application. It showcases the feature of the 
    - Returns JSX elements:
      - Renders the **Header** component.
      - HTML structure with metadata and links to external CSS frameworks (**Bootstrap** and **Font Awesome**).
-     - Divisions (**<section>**) for different sections of the landing page:
+     - Divisions (__"<section>"__) for different sections of the landing page:
        - Header section with a heading image and a brief description of the application (**#headerHome**).
        - Section for shopping by picture, with an image and a brief description (**#fileDrop**).
        - Section for shopping by color, with an image and a brief description (**#fileDrop**).
