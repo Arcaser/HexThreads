@@ -1,4 +1,4 @@
-import React, {Fragment} from "react";
+import React from "react";
 import Header from "../../components/header/Header";
 import styles from '../landing/Landing.module.css';
 import headerPic from '../../assets/headerPic.jpg';
@@ -8,31 +8,36 @@ import colorPal from '../../assets/colorPal.jpg';
 const Landing = () =>
 {
     return(
-        <Fragment>
+        <>
             <Header/>
             <html>
                 <head>
-                    <meta charset="UTF-8" />
-                    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+                    <meta charSet="UTF-8" />
+                    <meta httpEquiv="X-UA-Compatible" content="IE=edge"/>
                     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
                     <link
                         href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
                         rel="stylesheet"
                         integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
-                        crossorigin="anonymous"
+                        crossOrigin="anonymous"
                     />
-                    <link rel="stylesheet" 
-                    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
-                    <link rel="stylesheet" href="./CSS/Landing.css"/>
+                    <link 
+                        rel="stylesheet" 
+                        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+                    />
                     <title>HexHome</title>
                 </head>
                 <body>
                     <section>
-                        <div id="headerHome" class="p-5">
-                            <div class="p-20 bg-light">
-                            <img id={styles.headImage} src = {headerPic} 
-                                height="500" width="630"/>
-                                <div class="container bg-light">
+                        <div id="headerHome" className="p-5">
+                            <div className="p-20 bg-light">
+                                <img 
+                                    id={styles.headImage} 
+                                    src={headerPic} 
+                                    height="500" 
+                                    width="630"
+                                />
+                                <div className="container bg-light">
                                     <h1 className={styles.header}>HexThreads</h1>
                                     <p className={styles.headerText}>
                                         HexThreads is designed to discover your ideal match for your requirements. 
@@ -43,44 +48,47 @@ const Landing = () =>
                             </div>
                         </div>
                     </section>
-                    <div class="p-2 bg-light"></div>
+                    <div className="p-2 bg-light"></div>
                     <section id="fileDrop" class="p-5 bg-dark">
-                        <h2 class="text-light text-center">Shop By Picture</h2>
-                        <div class="container-md">
-                            <div class="row align-items-center justify-content-between">
-                                <div class="col p-5">
-                                    <p class="text-light">
-                                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Obcaecati error corrupti itaque omnis possimus quidem molestias, placeat explicabo voluptatem fugit praesentium expedita laborum vero vitae maxime enim, ea culpa nobis?
+                        <h2 className="text-light text-center">Shop By Picture</h2>
+                        <div className="container-md">
+                            <div className="row align-items-center justify-content-between">
+                                <div className="col p-5">
+                                    <p className="text-light"> 
+                                        Discovering your perfect outfit is now easier than ever. 
+                                        Simply upload an image containing colors you adore, and our system will analyze the hues present to curate personalized clothing suggestions tailored to your unique palette. 
+                                        Whether you're drawn to vibrant blues, earthy greens, or fiery reds, our system ensures that every recommendation aligns with your color preferences, helping you effortlessly express your style with confidence. 
+                                        Try it now and let the magic of color transform your fashion journey!
                                     </p>
-                                    <a href="C:\Users\User\OneDrive\Documents\HexThread\HexThreads\client\HexHtml\HexFileDrop.html" class="btn btn-primary">Read More</a>
+                                    <a href="C:\Users\User\OneDrive\Documents\HexThread\HexThreads\client\HexHtml\HexFileDrop.html" className="btn btn-primary">Upload</a>
                                 </div>
-                                <div class="col-sm">
-                                    <img src={dragAndDrop} class="img-fluid"/>
+                                <div className="col-sm">
+                                    <img src={dragAndDrop} className="img-fluid"/>
                                 </div>
                             </div>
                         </div>
                     </section>
-                    <div class="p-2 bg-light"></div>
-                    <section id="fileDrop" class="p-5 bg-light">
-                    <h2 class="text-dark text-center">Shop By Color</h2>
-                        <div class="container-md">
-                            <div class="row align-items-center justify-content-between">
-                                <div class="col-sm">
-                                    <img src={colorPal} class="img-fluid" alt="" />
+                    {/* <div className="p-2 bg-light"></div>
+                    <section id="fileDrop" className="p-5 bg-light">
+                    <h2 className="text-dark text-center">Shop By Color</h2>
+                        <div className="container-md">
+                            <div className="row align-items-center justify-content-between">
+                                <div className="col-sm">
+                                    <img src={colorPal} className="img-fluid" alt="" />
                                 </div>
-                                <div class = "col p-5">
-                                    <p class = "text-dark">
+                                <div className = "col p-5">
+                                    <p className = "text-dark">
                                         Lorem ipsum, dolor sit amet consectetur adipisicing elit. Obcaecati error corrupti itaque omnis possimus quidem molestias, placeat explicabo voluptatem fugit praesentium expedita laborum vero vitae maxime enim, ea culpa nobis?
                                     </p>
-                                    <a href="#" class="btn btn-primary">Read More</a>
+                                    <a href="#" className="btn btn-primary">Read More</a>
                                 </div>
                             
                             </div>
                         </div>
-                    </section>
+                    </section> */}
                 </body>
             </html>
-        </Fragment>
+        </>
     );
 }
 

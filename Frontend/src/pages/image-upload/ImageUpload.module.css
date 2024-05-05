@@ -1,0 +1,64 @@
+#dropDisplay
+{
+    border: 2px solid black;
+    width: 200px;
+    height: 200px;
+    margin: 20px;
+    border-radius: 9999px;
+    overflow: hidden;
+    
+    background-position: center;
+    background-size: cover;
+    transition: ease 0.4s all;
+}
+
+.uploadElements
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.paletteCount
+{
+    width: 5%;
+    height: 41px;
+    margin: 20px;
+    padding: 10px;
+}
+
+.paletteArea
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.colors
+{
+    padding: 20px;
+    list-style-type: none;
+    display: inline-flex;
+}
+
+.colors li
+{
+    padding: 50px;
+    text-align: center;
+}
+
+.colorArea
+{
+    width: 150px;
+    height: 150px;
+    border: 4px solid black;
+    border-radius: 9999px;
+    cursor: pointer;
+    transition: ease 0.4s all;
+}
+
+.colorArea:hover
+{
+    width: 200px;
+    height: 200px;
+}
