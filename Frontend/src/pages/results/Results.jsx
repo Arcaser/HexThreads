@@ -47,7 +47,7 @@ const Results = () =>
                     <img 
                         src={path}
                         alt={altText}
-                        className=""
+                        className={styles.resultImg}
                     />
                 </li>
             );

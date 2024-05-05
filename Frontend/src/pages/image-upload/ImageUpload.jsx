@@ -7,7 +7,6 @@ const ImageUpload = () =>
 {
     const [background, setBackground] = useState(null);
     const [count, setCount] = useState(0);
-    const [color, setColor] = useState('');
     const [palette, setPalette] = useState([]);
 
     let navigate = useNavigate();
@@ -40,26 +39,10 @@ const ImageUpload = () =>
         e.preventDefault();
         const hexCode = e.target.style.backgroundColor;
 
-        let path = '/color-picker';
+        let path = '/results';
 
         localStorage.setItem('selected-color', rgbToHex(hexCode));
         navigate(path);
-    };
-
-    const getColor = async (e) => {
-        e.preventDefault();
-        const image = new FormData();
-        image.append('file', e.target.files[0]);
-
-        const response = await fetch('http://127.0.0.1:5000/color', {
-            method: 'POST',
-            body: image,
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-            setColor(data);
-        });
     };
 
     const getPalette = async (e) => {
