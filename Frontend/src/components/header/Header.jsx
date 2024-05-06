@@ -26,7 +26,7 @@ const Header = () =>
     return (
         <>
             <div className={styles.topnav}>
-                <Link to="/">HexThreads</Link>
+                <Link to="/">HX</Link>
                 <div id={styles.myLinks}>
                     <Link to="/">Home</Link>
                     <Link to="/image-upload">Shop by Picture</Link>
