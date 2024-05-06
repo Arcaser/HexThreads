@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Header from "../../components/header/Header";
 import styles from '../landing/Landing.module.css';
 import headerPic from '../../assets/headerPic.jpg';
@@ -60,7 +61,7 @@ const Landing = () =>
                                         Whether you're drawn to vibrant blues, earthy greens, or fiery reds, our system ensures that every recommendation aligns with your color preferences, helping you effortlessly express your style with confidence. 
                                         Try it now and let the magic of color transform your fashion journey!
                                     </p>
-                                    <a href="C:\Users\User\OneDrive\Documents\HexThread\HexThreads\client\HexHtml\HexFileDrop.html" className="btn btn-primary">Upload</a>
+                                    <Link to={"/image-upload"} className="btn btn-primary">Upload</Link>
                                 </div>
                                 <div className="col-sm">
                                     <img src={dragAndDrop} className="img-fluid"/>
