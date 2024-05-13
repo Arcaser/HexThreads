@@ -25,7 +25,7 @@ class Clothe(db.Model):
         return sqrt(sum((c1 - c2) ** 2 for c1, c2 in zip(rgb1, rgb2)))
     
 
-    def match_color(self, target_hex, tolerance=5):
+    def match_color(self, target_hex, tolerance=50):
         target_rgb = self.hex_to_rgb(target_hex)
         palette_array = self.palette.split(",")
         for hex_code in palette_array:
